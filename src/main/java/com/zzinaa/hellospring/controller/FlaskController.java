@@ -1,5 +1,7 @@
 package com.zzinaa.hellospring.controller;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -9,11 +11,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.*;
 
+@Controller
 public class FlaskController {
 
-    @RequestMapping(value = "/test.do", method = RequestMethod.GET)
-    public ModelAndView Test() {
-        ModelAndView mav = new ModelAndView();
+    @RequestMapping(value = "test", method = RequestMethod.GET)
+    public String Test(Model model) {
 
         String url = "http://127.0.0.1:5000/tospring";
         String sb = "";
@@ -42,10 +44,12 @@ public class FlaskController {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        mav.addObject("test1", sb.toString()); // "test1"는 jsp파일에서 받을때 이름,
-        //sb.toString은 value값(여기에선 test)
-        mav.addObject("fail", false);
-        mav.setViewName("test");   // jsp파일 이름
-        return mav;
+//        mav.addObject("test1", sb.toString()); // "test1"는 jsp파일에서 받을때 이름,
+//        //sb.toString은 value값(여기에선 test)
+//        mav.addObject("fail", false);
+//        mav.setViewName("test");   // jsp파일 이름
+//        return mav;
+        model.addAttribute("data", sb.toString());
+        return "test";
     }
 }

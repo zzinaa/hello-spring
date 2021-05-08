@@ -1,6 +1,7 @@
 package com.zzinaa.hellospring;
 
 import com.zzinaa.hellospring.repository.JdbcMemberRepository;
+import com.zzinaa.hellospring.repository.JdbcTemplateMemberRepository;
 import com.zzinaa.hellospring.repository.MemberRepository;
 import com.zzinaa.hellospring.repository.MemoryMemberRepository;
 import com.zzinaa.hellospring.service.MemberService;
@@ -28,6 +29,7 @@ public class SpringConfig {
     @Bean
     public MemberRepository memberRepository() {
 //        return new MemoryMemberRepository();
-        return new JdbcMemberRepository(dataSource);
+//        return new JdbcMemberRepository(dataSource);
+        return new JdbcTemplateMemberRepository(dataSource);
     }
 }
